@@ -9,6 +9,7 @@ module.exports = class MenuController {
               message: "Please choose from an option below: ",
               choices: [
                 "Add new contact",
+                "See current date and time",
                 "Exit"
               ]
             }
@@ -22,6 +23,9 @@ module.exports = class MenuController {
             switch(response.mainMenuChoice) {
                 case "Add new contact":
                   this.addContact()
+                  break
+                case "See current date and time":
+                  this.getDate()
                   break
                 case "Exit":
                   this.exit()
@@ -43,6 +47,14 @@ module.exports = class MenuController {
         this.clear()
         console.log('addContact called')
         this.main()
+    }
+
+    getDate() {
+      const currentDate = new Date()
+      const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: "2-digit", timeZoneName: "short"}
+      this.clear()
+      console.log(`The current date and time is: ${currentDate.toLocaleString('en-US', options)}`)
+      this.main()
     }
     exit() {
         console.log("Thanks for using AddressBloc!")
